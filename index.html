@@ -25,13 +25,15 @@
  color: #d63384;
  }
 
- .buttons {
+ .button-container {
  margin-top: 10px;
  display: flex;
  justify-content: center;
  align-items: center;
- gap: 20px;
+ gap: 30px; /* Even spacing between buttons */
+ width: 100%;
  position: relative;
+ max-width: 400px;
  }
 
  button {
@@ -62,7 +64,7 @@
  align-items: center;
  justify-content: center;
  font-size: 1.2em;
- position: absolute;
+ position: relative;
  }
 
  .hidden {
@@ -81,7 +83,7 @@
  100% { transform: translateY(-100vh); opacity: 0; }
  }
 
- /* Adjusted text size, width & centered everything */
+ /* Adjusted text width & centered everything */
  #love-letter {
  margin-top: 15px;
  font-size: 0.9em;
@@ -118,18 +120,6 @@
  #careless-whisper {
  display: none;
  }
-
- /* Ensure the "No" button stays inside a boundary */
- .button-container {
- position: relative;
- width: 90vw;
- height: 50vh;
- display: flex;
- justify-content: center;
- align-items: center;
- overflow: hidden;
- border: 2px solid transparent; /* Invisible boundary */
- }
  </style>
 </head>
 <body>
@@ -140,7 +130,7 @@
    <button id="no">no😠</button>
  </div>
 
- <div class="reaction hidden" id="reaction">🐹 &nbsp;YEAHHHHHHHH 😛</div>
+ <div class="reaction hidden" id="reaction">🐹 &nbsp;  YEAHHHHHHHH 😛</div>
  <div class="hidden" id="love-letter">
     my beautiful rachael,<br>
     you make me the happiest boy in the world. you've helped me grow into a better man in so many different ways, and I can't even begin to express how much that means to me.<br>
@@ -207,10 +197,10 @@
  }
 
  let container = document.querySelector(".button-container");
- let maxX = container.clientWidth - noButton.clientWidth - 20; // Keep inside boundary
- let maxY = container.clientHeight - noButton.clientHeight - 20; // Keep inside boundary
- let x = Math.max(10, Math.random() * maxX);
- let y = Math.max(10, Math.random() * maxY);
+ let maxX = container.clientWidth - noButton.clientWidth - 10;
+ let maxY = container.clientHeight - noButton.clientHeight - 10;
+ let x = Math.max(5, Math.random() * maxX);
+ let y = Math.max(5, Math.random() * maxY);
 
  noButton.style.position = "absolute";
  noButton.style.left = `${x}px`;
@@ -224,3 +214,4 @@
  </script>
 </body>
 </html>
+
