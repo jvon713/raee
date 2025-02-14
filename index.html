@@ -30,9 +30,10 @@
  display: flex;
  justify-content: center;
  align-items: center;
- gap: 30px; /* Even spacing between buttons */
+ gap: 50px; /* Ensures buttons are evenly spaced */
  width: 100%;
  max-width: 400px;
+ position: relative;
  }
 
  button {
@@ -65,6 +66,8 @@
  justify-content: center;
  font-size: 1.2em;
  position: absolute;
+ left: 50%; /* Center it initially */
+ transform: translateX(-50%); /* Ensure perfect alignment */
  }
 
  .hidden {
@@ -196,8 +199,8 @@
    return;
  }
 
- let maxX = window.innerWidth - noButton.clientWidth - 20; // Keep inside screen
- let maxY = window.innerHeight - noButton.clientHeight - 20; // Keep inside screen
+ let maxX = window.innerWidth - noButton.clientWidth - 10; // Keep inside screen width
+ let maxY = window.innerHeight - noButton.clientHeight - 10; // Keep inside screen height
  let x = Math.random() * maxX;
  let y = Math.random() * maxY;
 
