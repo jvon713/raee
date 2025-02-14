@@ -56,6 +56,7 @@
  height: auto;
  min-width: 100px;
  min-height: 50px;
+ position: absolute;
  }
 
  .hidden {
@@ -74,19 +75,13 @@
  100% { transform: translateY(-100vh); opacity: 0; }
  }
 
- .reaction {
- margin-top: 20px;
- font-size: 3em;
- }
-
- #love-letter {
- margin-top: 20px;
- font-size: 1.3em;
- color: #d63384;
+ /* Lowered all text below buttons */
+ .reaction, #love-letter, #yes-counter {
+ margin-top: 50px;
  }
 
  .gifs {
- margin-top: 20px;
+ margin-top: 40px;
  display: flex;
  justify-content: center;
  gap: 10px;
@@ -121,7 +116,7 @@
 
  <!-- Updated Audio with hidden controls -->
  <audio id="careless-whisper">
-   <source src="https://github.com/jvon713/raee/blob/main/George%20Michael%20-%20Careless%20Whisper%20(Official%20Video).mp3" type="audio/mpeg">
+   <source src="https://github.com/jvon713/raee/blob/main/George%20Michael%20-%20Careless%20Whisper%20(Official%20Video).mp3?raw=true" type="audio/mpeg">
    Your browser does not support the audio element.
  </audio>
 
@@ -166,10 +161,10 @@
  });
 
  noButton.addEventListener("mouseover", function() {
- let maxX = window.innerWidth - noButton.clientWidth;
- let maxY = window.innerHeight - noButton.clientHeight;
- let x = Math.random() * maxX;
- let y = Math.random() * maxY;
+ let maxX = window.innerWidth - noButton.clientWidth - 50; // Keeps inside screen
+ let maxY = window.innerHeight - noButton.clientHeight - 50; // Keeps inside screen
+ let x = Math.max(10, Math.random() * maxX); // Minimum margin so it stays visible
+ let y = Math.max(10, Math.random() * maxY); // Minimum margin so it stays visible
 
  noButton.style.left = `${x}px`;
  noButton.style.top = `${y}px`;
@@ -182,3 +177,4 @@
  </script>
 </body>
 </html>
+
