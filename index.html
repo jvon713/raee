@@ -79,12 +79,15 @@
 
  .gif-container {
  margin-top: 30px;
+ display: flex;
+ justify-content: center;
+ gap: 20px;
  }
 
- .gif-container img {
+ .gif-container a img {
  width: 250px;
  height: auto;
- margin: 10px;
+ border-radius: 10px;
  }
 
  </style>
@@ -104,13 +107,19 @@ and for that, rachael, words can only express how much love I truly have for you
 
  <p id="yes-counter" class="hidden">you've said "yeth" <span id="count">0</span> times! :p</p>
 
+ <!-- Audio element -->
  <audio id="careless-whisper" preload="auto">
    <source src="https://www.myinstants.com/media/sounds/george-michael-careless-whisper.mp3" type="audio/mpeg">
  </audio>
 
+ <!-- GIFs as clickable images -->
  <div class="gif-container">
-   <img src="https://media.tenor.com/NMD-xfH7uNUAAAAM/seal-seals.gif" alt="Seal Kiss">
-   <img src="https://media.tenor.com/5hLp-9mjNDkAAAAM/weevils-cement.gif" alt="Forced to Eat Cement">
+   <a href="https://tenor.com/view/seal-seals-seal-kiss-kiss-gif-25888634" target="_blank">
+     <img src="https://media.tenor.com/NMD-xfH7uNUAAAAM/seal-seals.gif" alt="Seal Kiss">
+   </a>
+   <a href="https://tenor.com/view/weevils-cement-forced-to-eat-cement-cement-spinning-spin-gif-4655161277358903712" target="_blank">
+     <img src="https://media.tenor.com/5hLp-9mjNDkAAAAM/weevils-cement.gif" alt="Forced to Eat Cement">
+   </a>
  </div>
 
  <script>
@@ -134,6 +143,7 @@ and for that, rachael, words can only express how much love I truly have for you
  // Play audio properly
  if (audio.paused) {
      audio.currentTime = 0; // Start from beginning
+     audio.muted = false; // Ensure it's unmuted
      audio.play().catch(error => console.log("Audio play failed:", error));
  }
 
