@@ -162,19 +162,32 @@
      return;
    }
 
-   let container = document.querySelector(".button-container").getBoundingClientRect();
-   let gifs = document.querySelector(".gifs").getBoundingClientRect();
-   let title = document.querySelector("h1").getBoundingClientRect();
+   // Get the dimensions of the viewport
+   let viewportWidth = window.innerWidth;
+   let viewportHeight = window.innerHeight;
 
-   let minX = container.left + 10; // Prevents it from going too far left
-   let maxX = container.right - noButton.clientWidth - 10; // Prevents it from going too far right
-   let minY = title.bottom + 10; // Prevents it from going above the title
-   let maxY = gifs.top - noButton.clientHeight - 10; // Prevents it from going into the GIFs
+   // Get the dimensions of the "No" button
+   let buttonWidth = noButton.offsetWidth;
+   let buttonHeight = noButton.offsetHeight;
 
-   let x = Math.random() * (maxX - minX) + minX;
-   let y = Math.random() * (maxY - minY) + minY;
+   // Calculate the maximum allowed positions
+   let maxX = viewportWidth - buttonWidth;
+   let maxY = viewportHeight - buttonHeight;
 
-   noButton.style.position = "absolute";
+   // Generate random positions within the viewport bounds
+   let x = Math.random() * maxX;
+   let y = Math.random() * maxY;
+
+   // Ensure the button doesn't overlap with the "Yes" button
+   let yesButtonRect = yesButton.getBoundingClientRect();
+   let buffer = 20; // Add a small buffer to avoid overlapping
+
+   if (x < yesButtonRect.right + buffer && y < yesButtonRect.bottom + buffer && y + buttonHeight > yesButtonRect.top - buffer) {
+     x = yesButtonRect.right + buffer;
+   }
+
+   // Set the new position of the "No" button
+   noButton.style.position = "fixed";
    noButton.style.left = `${x}px`;
    noButton.style.top = `${y}px`;
  });
