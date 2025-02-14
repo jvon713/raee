@@ -32,7 +32,6 @@
    align-items: center;
    gap: 50px;
    position: relative;
-   width: 100%;
  }
 
  button {
@@ -43,13 +42,12 @@
    cursor: pointer;
    transition: 0.3s ease-in-out;
    white-space: nowrap;
-   position: absolute;
+   position: relative;
  }
 
  #yes {
    background-color: #ff69b4;
    color: white;
-   position: static; /* Keeps 'Yes' button in place */
  }
 
  #yes:hover {
@@ -164,15 +162,21 @@
      return;
    }
 
-   let maxX = window.innerWidth - noButton.clientWidth - 20;
-   let maxY = window.innerHeight - noButton.clientHeight - 20;
+   let container = document.querySelector(".button-container").getBoundingClientRect();
+   let gifs = document.querySelector(".gifs").getBoundingClientRect();
+   let title = document.querySelector("h1").getBoundingClientRect();
 
-   let x = Math.random() * maxX;
-   let y = Math.random() * maxY;
+   let minX = container.left + 10; // Prevents it from going too far left
+   let maxX = container.right - noButton.clientWidth - 10; // Prevents it from going too far right
+   let minY = title.bottom + 10; // Prevents it from going above the title
+   let maxY = gifs.top - noButton.clientHeight - 10; // Prevents it from going into the GIFs
 
+   let x = Math.random() * (maxX - minX) + minX;
+   let y = Math.random() * (maxY - minY) + minY;
+
+   noButton.style.position = "absolute";
    noButton.style.left = `${x}px`;
    noButton.style.top = `${y}px`;
-   noButton.style.transition = "left 0.2s ease-out, top 0.2s ease-out";
  });
 
  window.addEventListener("load", function() {
