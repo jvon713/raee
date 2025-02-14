@@ -24,6 +24,7 @@
  display: flex;
  justify-content: center;
  gap: 20px;
+ position: relative;
  }
 
  button {
@@ -33,11 +34,13 @@
  border-radius: 10px;
  cursor: pointer;
  transition: 0.3s;
+ position: absolute;
  }
 
  #yes {
  background-color: #ff69b4;
  color: white;
+ left: 40%;
  }
 
  #yes:hover {
@@ -47,7 +50,7 @@
  #no {
  background-color: #ccc;
  color: black;
- position: relative;
+ right: 40%;
  }
 
  .hidden {
@@ -87,6 +90,10 @@
  margin: 10px;
  }
 
+ /* Hide the audio bar */
+ #careless-whisper {
+ display: none;
+ }
  </style>
 </head>
 <body>
@@ -104,15 +111,15 @@
 
  <p id="yes-counter" class="hidden">you've said "yeth" <span id="count">0</span> times! :p</p>
 
- <!-- Updated Audio with proper path -->
- <audio id="careless-whisper" controls muted>
-   <source src="assets/George Michael - Careless Whisper (Official Video).mp3" type="audio/mpeg">
+ <!-- Updated Audio with hidden controls -->
+ <audio id="careless-whisper">
+   <source src="https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/main/assets/George%20Michael%20-%20Careless%20Whisper%20(Official%20Video).mp3" type="audio/mpeg">
    Your browser does not support the audio element.
  </audio>
 
  <div class="gifs">
-   <img src="assets/seal-seals.gif" alt="Seal GIF">
-   <img src="assets/weevils-cement-forced-to-eat-cement.gif" alt="Cement GIF">
+   <img src="https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/main/assets/seal-seals.gif" alt="Seal GIF">
+   <img src="https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/main/assets/weevils-cement-forced-to-eat-cement.gif" alt="Cement GIF">
  </div>
 
  <script>
@@ -134,7 +141,6 @@
  loveLetter.classList.remove("hidden");
 
  // Play audio when button is clicked
- audio.muted = false;
  audio.play();
 
  // Create floating hearts across the whole screen
