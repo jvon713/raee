@@ -33,8 +33,9 @@
  border: none;
  border-radius: 10px;
  cursor: pointer;
- transition: 0.3s;
+ transition: 0.3s ease-in-out;
  position: absolute;
+ white-space: nowrap;
  }
 
  #yes {
@@ -51,6 +52,10 @@
  background-color: #ccc;
  color: black;
  right: 40%;
+ width: auto;
+ height: auto;
+ min-width: 100px;
+ min-height: 50px;
  }
 
  .hidden {
@@ -82,6 +87,9 @@
 
  .gifs {
  margin-top: 20px;
+ display: flex;
+ justify-content: center;
+ gap: 10px;
  }
 
  img {
@@ -104,7 +112,7 @@
  <button id="no">no😠</button>
  </div>
 
- <div class="reaction hidden" id="reaction">🐹 &nbsp;  YEAHHHHHHHH🎉</div>
+ <div class="reaction hidden" id="reaction">🐹 &nbsp;  YEAHHHHHHHH 😛</div>
  <div class="hidden" id="love-letter">my beautiful rachael,<br>
  you make me the happiest boy in the world, you've helped me become a better man,
  and for that, rachael, words can only express how much love I truly have for you.<br>love, jorge von</div>
@@ -118,8 +126,8 @@
  </audio>
 
  <div class="gifs">
-   <img src="https://raw.githubusercontent.com/jvon713/raee/refs/heads/main/weevils-cement-forced-to-eat-cement.gif" alt="Seal GIF">
-   <img src="https://github.com/jvon713/raee/blob/main/seal-seals.gif?raw=true" alt="Cement GIF">
+   <img src="https://github.com/jvon713/raee/blob/main/seal-seals.gif?raw=true" alt="Seal GIF">
+   <img src="https://github.com/jvon713/raee/blob/main/weevils-cement-forced-to-eat-cement.gif?raw=true" alt="Cement GIF">
  </div>
 
  <script>
@@ -162,8 +170,10 @@
  let maxY = window.innerHeight - noButton.clientHeight;
  let x = Math.random() * maxX;
  let y = Math.random() * maxY;
+
  noButton.style.left = `${x}px`;
  noButton.style.top = `${y}px`;
+ noButton.style.transition = "left 0.2s ease, top 0.2s ease"; // Smooth movement
  });
 
  window.addEventListener("load", function() {
