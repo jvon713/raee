@@ -6,122 +6,119 @@
  <title>rae, will you be my valentine forever?</title>
  <style>
  body {
- text-align: center;
- font-family: 'Arial', sans-serif;
- background-color: #ffdde1;
- margin: 0;
- overflow: hidden;
- display: flex;
- flex-direction: column;
- align-items: center;
- justify-content: center;
- height: 100vh;
- position: relative;
+   text-align: center;
+   font-family: 'Arial', sans-serif;
+   background-color: #ffdde1;
+   margin: 0;
+   overflow: hidden;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   height: 100vh;
+   position: relative;
  }
 
  h1 {
- margin-top: 20px;
- font-size: 2em;
- color: #d63384;
+   margin-top: 20px;
+   font-size: 2em;
+   color: #d63384;
  }
 
  .button-container {
- margin-top: 10px;
- display: flex;
- justify-content: center;
- align-items: center;
- gap: 50px; /* Ensures buttons are evenly spaced */
- width: 100%;
- max-width: 400px;
- position: relative;
+   margin-top: 20px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 50px;
+   width: 100%;
+   max-width: 400px;
+   position: relative;
  }
 
  button {
- font-size: 1.2em;
- padding: 8px 16px;
- border: none;
- border-radius: 10px;
- cursor: pointer;
- transition: 0.3s ease-in-out;
- white-space: nowrap;
- position: relative;
+   font-size: 1.2em;
+   padding: 8px 16px;
+   border: none;
+   border-radius: 10px;
+   cursor: pointer;
+   transition: 0.3s ease-in-out;
+   white-space: nowrap;
+   position: relative;
  }
 
  #yes {
- background-color: #ff69b4;
- color: white;
+   background-color: #ff69b4;
+   color: white;
  }
 
  #yes:hover {
- background-color: #ff1493;
+   background-color: #ff1493;
  }
 
  #no {
- background-color: #ccc;
- color: black;
- width: 110px;
- height: 45px;
- display: flex;
- align-items: center;
- justify-content: center;
- font-size: 1.2em;
- position: absolute;
- left: 50%; /* Center it initially */
- transform: translateX(-50%); /* Ensure perfect alignment */
+   background-color: #ccc;
+   color: black;
+   width: 110px;
+   height: 45px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 1.2em;
+   position: absolute;
+   transition: left 0.3s ease, top 0.3s ease;
  }
 
  .hidden {
- display: none;
+   display: none;
  }
 
  .floating-heart {
- position: fixed;
- font-size: 2em;
- color: red;
- animation: floatUp 5s linear infinite;
+   position: fixed;
+   font-size: 2em;
+   color: red;
+   animation: floatUp 5s linear infinite;
  }
 
  @keyframes floatUp {
- 0% { transform: translateY(100vh); opacity: 1; }
- 100% { transform: translateY(-100vh); opacity: 0; }
+   0% { transform: translateY(100vh); opacity: 1; }
+   100% { transform: translateY(-100vh); opacity: 0; }
  }
 
- /* Adjusted text width & centered everything */
  #love-letter {
- margin-top: 15px;
- font-size: 0.9em;
- color: #d63384;
- max-width: 500px;
- line-height: 1.4;
- text-align: center;
+   margin-top: 15px;
+   font-size: 0.9em;
+   color: #d63384;
+   max-width: 500px;
+   line-height: 1.4;
+   text-align: center;
  }
 
  .reaction {
- margin-top: 20px;
- font-size: 1.6em;
+   margin-top: 20px;
+   font-size: 1.6em;
  }
 
  #yes-counter {
- margin-top: 10px;
- font-size: 0.9em;
+   margin-top: 10px;
+   font-size: 0.9em;
  }
 
  .gifs {
- margin-top: 20px;
- display: flex;
- justify-content: center;
- gap: 10px;
+   margin-top: 20px;
+   display: flex;
+   justify-content: center;
+   gap: 10px;
  }
 
  img {
- width: 250px;
- height: auto;
- margin: 5px;
+   width: 250px;
+   height: auto;
+   margin: 5px;
  }
 
- /* Hide the audio bar */
  #careless-whisper {
- display: none;
+   display: none;
  }
  </style>
 </head>
@@ -133,7 +130,7 @@
    <button id="no">no😠</button>
  </div>
 
- <div class="reaction hidden" id="reaction">🐹 &nbsp;YEAHHHHHHHH 😛</div>
+ <div class="reaction hidden" id="reaction">🐹 &nbsp;  YEAHHHHHHHH 😛</div>
  <div class="hidden" id="love-letter">
     my beautiful rachael,<br>
     you make me the happiest boy in the world. you've helped me grow into a better man in so many different ways, and I can't even begin to express how much that means to me.<br>
@@ -146,7 +143,6 @@
 
  <p id="yes-counter" class="hidden">you've said "yeth" <span id="count">0</span> times! :p</p>
 
- <!-- Updated Audio with hidden controls -->
  <audio id="careless-whisper">
    <source src="https://github.com/jvon713/raee/blob/main/George%20Michael%20-%20Careless%20Whisper%20(Official%20Video).mp3?raw=true" type="audio/mpeg">
    Your browser does not support the audio element.
@@ -170,47 +166,48 @@
  let firstHover = true;
 
  yesButton.addEventListener("click", function() {
- count++;
- countSpan.textContent = count;
- yesCounter.classList.remove("hidden");
- reaction.classList.remove("hidden");
- loveLetter.classList.remove("hidden");
+   count++;
+   countSpan.textContent = count;
+   yesCounter.classList.remove("hidden");
+   reaction.classList.remove("hidden");
+   loveLetter.classList.remove("hidden");
 
- // Play audio when button is clicked
- audio.play();
+   audio.play();
 
- // Create floating hearts across the whole screen
- for (let i = 0; i < 10; i++) {
- let heart = document.createElement("div");
- heart.classList.add("floating-heart");
- heart.innerHTML = "❤️";
- heart.style.left = Math.random() * 100 + "vw";
- heart.style.top = Math.random() * 100 + "vh";
- heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
- document.body.appendChild(heart);
+   for (let i = 0; i < 10; i++) {
+     let heart = document.createElement("div");
+     heart.classList.add("floating-heart");
+     heart.innerHTML = "❤️";
+     heart.style.left = Math.random() * 100 + "vw";
+     heart.style.top = Math.random() * 100 + "vh";
+     heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+     document.body.appendChild(heart);
 
- setTimeout(() => heart.remove(), 5000);
- }
+     setTimeout(() => heart.remove(), 5000);
+   }
  });
 
  noButton.addEventListener("mouseenter", function() {
- if (firstHover) {
-   firstHover = false;
-   return;
- }
+   if (firstHover) {
+     firstHover = false;
+     return;
+   }
 
- let maxX = window.innerWidth - noButton.clientWidth - 10; // Keep inside screen width
- let maxY = window.innerHeight - noButton.clientHeight - 10; // Keep inside screen height
- let x = Math.random() * maxX;
- let y = Math.random() * maxY;
+   let maxX = window.innerWidth - noButton.clientWidth - 10;
+   let maxY = window.innerHeight - noButton.clientHeight - 10;
 
- noButton.style.left = `${x}px`;
- noButton.style.top = `${y}px`;
- noButton.style.transition = "left 0.3s ease, top 0.3s ease";
+   let minY = document.querySelector("h1").getBoundingClientRect().bottom + 10;
+   let maxYLimit = document.querySelector(".gifs").getBoundingClientRect().top - noButton.clientHeight - 10;
+
+   let x = Math.random() * maxX;
+   let y = Math.random() * (maxYLimit - minY) + minY;
+
+   noButton.style.left = `${x}px`;
+   noButton.style.top = `${y}px`;
  });
 
  window.addEventListener("load", function() {
- audio.play().catch(error => console.log("Autoplay prevented. User interaction needed."));
+   audio.play().catch(error => console.log("Autoplay prevented. User interaction needed."));
  });
  </script>
 </body>
