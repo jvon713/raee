@@ -95,7 +95,7 @@ and for that, rachael, words can only express how much love I truly have for you
 
  <p id="yes-counter" class="hidden">you've said "yeth" <span id="count">0</span> times! :p</p>
 
- <audio id="careless-whisper" src="https://www.myinstants.com/media/sounds/careless_whisper.mp3"></audio>
+ <audio id="careless-whisper" src="https://www.myinstants.com/media/sounds/careless_whisper.mp3" preload="auto"></audio>
 
  <script>
  let yesButton = document.getElementById("yes");
@@ -115,10 +115,9 @@ and for that, rachael, words can only express how much love I truly have for you
  reaction.classList.remove("hidden");
  loveLetter.classList.remove("hidden");
 
- // Play "Careless Whisper" only on the first click
- if (count === 1) {
+ // Ensure audio is unmuted and play it
+ audio.muted = false;
  audio.play().catch(error => console.log("Autoplay prevented:", error));
- }
 
  // Create floating hearts
  for (let i = 0; i < 5; i++) {
