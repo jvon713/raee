@@ -104,14 +104,15 @@
 
  <p id="yes-counter" class="hidden">you've said "yeth" <span id="count">0</span> times! :p</p>
 
- <audio id="careless-whisper" autoplay>
-   <source src="George Michael - Careless Whisper (Official Video).mp3" type="audio/mpeg">
+ <!-- Updated Audio with proper path -->
+ <audio id="careless-whisper" controls muted>
+   <source src="assets/George Michael - Careless Whisper (Official Video).mp3" type="audio/mpeg">
    Your browser does not support the audio element.
  </audio>
 
  <div class="gifs">
-   <img src="seal-seals.gif" alt="Seal GIF">
-   <img src="weevils-cement-forced-to-eat-cement.gif" alt="Cement GIF">
+   <img src="assets/seal-seals.gif" alt="Seal GIF">
+   <img src="assets/weevils-cement-forced-to-eat-cement.gif" alt="Cement GIF">
  </div>
 
  <script>
@@ -131,6 +132,10 @@
  yesCounter.classList.remove("hidden");
  reaction.classList.remove("hidden");
  loveLetter.classList.remove("hidden");
+
+ // Play audio when button is clicked
+ audio.muted = false;
+ audio.play();
 
  // Create floating hearts across the whole screen
  for (let i = 0; i < 10; i++) {
@@ -156,7 +161,7 @@
  });
 
  window.addEventListener("load", function() {
- audio.play().catch(error => console.log("Autoplay prevented:", error));
+ audio.play().catch(error => console.log("Autoplay prevented. User interaction needed."));
  });
  </script>
 </body>
