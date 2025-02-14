@@ -32,7 +32,6 @@
  align-items: center;
  gap: 30px; /* Even spacing between buttons */
  width: 100%;
- position: relative;
  max-width: 400px;
  }
 
@@ -44,6 +43,7 @@
  cursor: pointer;
  transition: 0.3s ease-in-out;
  white-space: nowrap;
+ position: relative;
  }
 
  #yes {
@@ -64,7 +64,7 @@
  align-items: center;
  justify-content: center;
  font-size: 1.2em;
- position: relative;
+ position: absolute;
  }
 
  .hidden {
@@ -196,16 +196,14 @@
    return;
  }
 
- let container = document.querySelector(".button-container");
- let maxX = container.clientWidth - noButton.clientWidth - 10;
- let maxY = container.clientHeight - noButton.clientHeight - 10;
- let x = Math.max(5, Math.random() * maxX);
- let y = Math.max(5, Math.random() * maxY);
+ let maxX = window.innerWidth - noButton.clientWidth - 20; // Keep inside screen
+ let maxY = window.innerHeight - noButton.clientHeight - 20; // Keep inside screen
+ let x = Math.random() * maxX;
+ let y = Math.random() * maxY;
 
- noButton.style.position = "absolute";
  noButton.style.left = `${x}px`;
  noButton.style.top = `${y}px`;
- noButton.style.transition = "left 0.2s ease, top 0.2s ease";
+ noButton.style.transition = "left 0.3s ease, top 0.3s ease";
  });
 
  window.addEventListener("load", function() {
@@ -214,4 +212,3 @@
  </script>
 </body>
 </html>
-
