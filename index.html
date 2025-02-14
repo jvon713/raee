@@ -75,20 +75,22 @@
  100% { transform: translateY(-100vh); opacity: 0; }
  }
 
- /* Fixed spacing below buttons */
- .reaction {
- margin-top: 40px; /* Tightened spacing */
- font-size: 2em;
- }
-
+ /* Adjusted text width to keep GIFs in frame */
  #love-letter {
  margin-top: 20px; /* Reduced spacing */
  font-size: 1.2em;
  color: #d63384;
- max-width: 600px;
+ max-width: 750px; /* Increased width */
  margin-left: auto;
  margin-right: auto;
  line-height: 1.5;
+ text-align: justify; /* Makes text stretch evenly */
+ }
+
+ /* Fixed spacing below buttons */
+ .reaction {
+ margin-top: 40px; /* Tightened spacing */
+ font-size: 2em;
  }
 
  #yes-counter {
@@ -123,7 +125,7 @@
  <button id="no">no😠</button>
  </div>
 
- <div class="reaction hidden" id="reaction">🐹 &nbsp;YEAHHHHHHHH 😛</div>
+ <div class="reaction hidden" id="reaction">🐹 &nbsp;  YEAHHHHHHHH 😛</div>
  <div class="hidden" id="love-letter">
     my beautiful rachael,<br>
     you make me the happiest boy in the world. you've helped me grow into a better man in so many different ways, and I can't even begin to express how much that means to me.<br>
@@ -157,6 +159,7 @@
  let audio = document.getElementById("careless-whisper");
 
  let count = 0;
+ let firstHover = true; // Track first hover
 
  yesButton.addEventListener("click", function() {
  count++;
@@ -183,6 +186,11 @@
  });
 
  noButton.addEventListener("mouseenter", function() {
+ if (firstHover) {
+   firstHover = false; // Prevents instant teleportation
+   return;
+ }
+
  let maxX = window.innerWidth - 200; // Limit max movement
  let maxY = window.innerHeight - 150; // Limit max movement
  let x = Math.max(50, Math.random() * maxX); // Prevents from disappearing
@@ -200,3 +208,4 @@
  </script>
 </body>
 </html>
+
