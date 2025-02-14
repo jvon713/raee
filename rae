@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>rae, will you be my valentine forever?</title>
+ <style>
+ body {
+ text-align: center;
+ font-family: 'Arial', sans-serif;
+ background-color: #ffdde1;
+ margin: 0;
+ overflow: hidden;
+ }
+
+ h1 {
+ margin-top: 50px;
+ font-size: 2.5em;
+ color: #d63384;
+ }
+
+ .buttons {
+ margin-top: 30px;
+ position: relative;
+ }
+
+ button {
+ font-size: 1.5em;
+ padding: 10px 20px;
+ border: none;
+ border-radius: 10px;
+ cursor: pointer;
+ transition: 0.3s;
+ }
+
+ #yes {
+ background-color: #ff69b4;
+ color: white;
+ }
+
+ #yes:hover {
+ background-color: #ff1493;
+ }
+
+ #no {
+ position: absolute;
+ background-color: #ccc;
+ color: black;
+ left: 50%;
+ top: 50%;
+ transform: translate(-50%, -50%);
+ }
+
+ .hidden {
+ display: none;
+ }
+
+ .floating-heart {
+ position: absolute;
+ font-size: 2em;
+ color: red;
+ animation: floatUp 3s linear infinite;
+ }
+
+ @keyframes floatUp {
+ 0% { transform: translateY(0); opacity: 1; }
+ 100% { transform: translateY(-100vh); opacity: 0; }
+ }
+
+ .reaction {
+ margin-top: 20px;
+ font-size: 3em;
+ }
+
+ #love-letter {
+ margin-top: 20px;
+ font-size: 1.3em;
+ color: #d63384;
+ }
+
+ </style>
+</head>
+<body>
+ <h1>rae, will you be my valentine forever? 🐿️</h1>
+
+ <div class="buttons">
+ <button id="yes">yeth 🐇</button>
+ <button id="no">no 😠</button>
+ </div>
+
+ <div class="reaction hidden" id="reaction">🐹 &nbsp; 🦭 YAY! 🎉</div>
+ <div class="hidden" id="love-letter">to my beautiful rachael,<br>
+ you make me the happiest boy in the world, you've helped me become a better man,
+and for that, rachael, words can only express how much love I truly have for you.<br>Love, [Your Name]</div>
+
+ <p id="yes-counter" class="hidden">You've said "Yes" <span id="count">0</span> times! 😍</p>
+
+ <audio id="careless-whisper" src="https://www.myinstants.com/media/sounds/careless_whisper.mp3"></audio>
+
+ <script>
+ let yesButton = document.getElementById("yes");
+ let noButton = document.getElementById("no");
+ let reaction = document.getElementById("reaction");
+ let loveLetter = document.getElementById("love-letter");
+ let yesCounter = document.getElementById("yes-counter");
+ let countSpan = document.getElementById("count");
+ let audio = document.getElementById("careless-whisper");
+
+ let count = 0;
+
+ yesButton.addEventListener("click", function() {
+ count++;
+ countSpan.textContent = count;
+ yesCounter.classList.remove("hidden");
+ reaction.classList.remove("hidden");
+ loveLetter.classList.remove("hidden");
+
+ // Play "Careless Whisper" only on the first click
+ if (count === 1) {
+ audio.play().catch(error => console.log("Autoplay prevented:", error));
+ }
+
+ // Create floating hearts
+ for (let i = 0; i < 5; i++) {
+ let heart = document.createElement("div");
+ heart.classList.add("floating-heart");
+ heart.innerHTML = "❤️";
+ heart.style.left = Math.random() * 100 + "vw";
+ heart.style.animationDuration = (Math.random() * 2 + 2) + "s";
+ document.body.appendChild(heart);
+
+ setTimeout(() => heart.remove(), 3000);
+ }
+ });
+
+ noButton.addEventListener("mouseover", function() {
+ let maxX = window.innerWidth - noButton.clientWidth;
+ let maxY = window.innerHeight - noButton.clientHeight;
+ let x = Math.random() * maxX;
+ let y = Math.random() * maxY;
+ noButton.style.left = `${x}px`;
+ noButton.style.top = `${y}px`;
+ });
+
+ </script>
+</body>
+</html>
