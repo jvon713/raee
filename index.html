@@ -32,7 +32,6 @@
    align-items: center;
    gap: 50px;
    position: relative;
-   width: 100%;
  }
 
  button {
@@ -43,13 +42,12 @@
    cursor: pointer;
    transition: 0.3s ease-in-out;
    white-space: nowrap;
-   position: absolute;
+   position: relative;
  }
 
  #yes {
    background-color: #ff69b4;
    color: white;
-   position: relative;
  }
 
  #yes:hover {
@@ -148,10 +146,6 @@
 
  let count = 0;
  let firstHover = true;
-
- // Keep buttons side by side initially
- yesButton.style.left = "40%";
- noButton.style.left = "60%";
 
  yesButton.addEventListener("click", function() {
    count++;
