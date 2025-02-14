@@ -10,13 +10,13 @@
    font-family: 'Arial', sans-serif;
    background-color: #ffdde1;
    margin: 0;
-   overflow: hidden;
    display: flex;
    flex-direction: column;
    align-items: center;
    justify-content: center;
    height: 100vh;
    position: relative;
+   overflow: hidden;
  }
 
  h1 {
@@ -31,9 +31,8 @@
    justify-content: center;
    align-items: center;
    gap: 50px;
-   width: 100%;
-   max-width: 400px;
    position: relative;
+   width: 100%;
  }
 
  button {
@@ -44,11 +43,13 @@
    cursor: pointer;
    transition: 0.3s ease-in-out;
    white-space: nowrap;
+   position: absolute;
  }
 
  #yes {
    background-color: #ff69b4;
    color: white;
+   position: relative;
  }
 
  #yes:hover {
@@ -64,23 +65,12 @@
    align-items: center;
    justify-content: center;
    font-size: 1.2em;
-   position: relative;
  }
 
- .hidden {
+ .reaction {
+   margin-top: 20px;
+   font-size: 1.6em;
    display: none;
- }
-
- .floating-heart {
-   position: fixed;
-   font-size: 2em;
-   color: red;
-   animation: floatUp 5s linear infinite;
- }
-
- @keyframes floatUp {
-   0% { transform: translateY(100vh); opacity: 1; }
-   100% { transform: translateY(-100vh); opacity: 0; }
  }
 
  #love-letter {
@@ -90,16 +80,13 @@
    max-width: 500px;
    line-height: 1.4;
    text-align: center;
- }
-
- .reaction {
-   margin-top: 20px;
-   font-size: 1.6em;
+   display: none;
  }
 
  #yes-counter {
    margin-top: 10px;
    font-size: 0.9em;
+   display: none;
  }
 
  .gifs {
@@ -112,7 +99,6 @@
  img {
    width: 250px;
    height: auto;
-   margin: 5px;
  }
 
  #careless-whisper {
@@ -128,8 +114,8 @@
    <button id="no">no😠</button>
  </div>
 
- <div class="reaction hidden" id="reaction">🐹 &nbsp;  YEAHHHHHHHH 😛</div>
- <div class="hidden" id="love-letter">
+ <div class="reaction" id="reaction">🐹 &nbsp;  YEAHHHHHHHH 😛</div>
+ <div id="love-letter">
     my beautiful rachael,<br>
     you make me the happiest boy in the world. you've helped me grow into a better man in so many different ways, and I can't even begin to express how much that means to me.<br>
     words can’t truly express how deep my love for you is, but just know my love for you is unlike anything I’ve ever felt.<br>
@@ -139,7 +125,7 @@
     jorge von :p
 </div>
 
- <p id="yes-counter" class="hidden">you've said "yeth" <span id="count">0</span> times! :p</p>
+ <p id="yes-counter">you've said "yeth" <span id="count">0</span> times! :p</p>
 
  <audio id="careless-whisper">
    <source src="https://github.com/jvon713/raee/blob/main/George%20Michael%20-%20Careless%20Whisper%20(Official%20Video).mp3?raw=true" type="audio/mpeg">
@@ -163,26 +149,17 @@
  let count = 0;
  let firstHover = true;
 
+ // Keep buttons side by side initially
+ yesButton.style.left = "40%";
+ noButton.style.left = "60%";
+
  yesButton.addEventListener("click", function() {
    count++;
    countSpan.textContent = count;
-   yesCounter.classList.remove("hidden");
-   reaction.classList.remove("hidden");
-   loveLetter.classList.remove("hidden");
-
+   yesCounter.style.display = "block";
+   reaction.style.display = "block";
+   loveLetter.style.display = "block";
    audio.play();
-
-   for (let i = 0; i < 10; i++) {
-     let heart = document.createElement("div");
-     heart.classList.add("floating-heart");
-     heart.innerHTML = "❤️";
-     heart.style.left = Math.random() * 100 + "vw";
-     heart.style.top = Math.random() * 100 + "vh";
-     heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
-     document.body.appendChild(heart);
-
-     setTimeout(() => heart.remove(), 5000);
-   }
  });
 
  noButton.addEventListener("mouseenter", function() {
@@ -191,14 +168,17 @@
      return;
    }
 
-   let maxX = window.innerWidth - noButton.clientWidth - 20;
-   let minX = 20; // To prevent it from going off the left edge
+   let container = document.querySelector(".button-container").getBoundingClientRect();
+   let gifs = document.querySelector(".gifs").getBoundingClientRect();
+   let title = document.querySelector("h1").getBoundingClientRect();
 
-   let titleBottom = document.querySelector("h1").getBoundingClientRect().bottom + 20;
-   let gifsTop = document.querySelector(".gifs").getBoundingClientRect().top - noButton.clientHeight - 20;
+   let minX = container.left + 10; // Prevents it from going too far left
+   let maxX = container.right - noButton.clientWidth - 10; // Prevents it from going too far right
+   let minY = title.bottom + 10; // Prevents it from going above the title
+   let maxY = gifs.top - noButton.clientHeight - 10; // Prevents it from going into the GIFs
 
    let x = Math.random() * (maxX - minX) + minX;
-   let y = Math.random() * (gifsTop - titleBottom) + titleBottom;
+   let y = Math.random() * (maxY - minY) + minY;
 
    noButton.style.position = "absolute";
    noButton.style.left = `${x}px`;
