@@ -38,13 +38,12 @@
 
  button {
    font-size: 1.2em;
-   padding: 8px 16px;
+   padding: 10px 20px;
    border: none;
    border-radius: 10px;
    cursor: pointer;
    transition: 0.3s ease-in-out;
    white-space: nowrap;
-   position: relative;
  }
 
  #yes {
@@ -65,8 +64,7 @@
    align-items: center;
    justify-content: center;
    font-size: 1.2em;
-   position: absolute;
-   transition: left 0.3s ease, top 0.3s ease;
+   position: relative;
  }
 
  .hidden {
@@ -130,7 +128,7 @@
    <button id="no">no😠</button>
  </div>
 
- <div class="reaction hidden" id="reaction">🐹 &nbsp;YEAHHHHHHHH 😛</div>
+ <div class="reaction hidden" id="reaction">🐹 &nbsp;  YEAHHHHHHHH 😛</div>
  <div class="hidden" id="love-letter">
     my beautiful rachael,<br>
     you make me the happiest boy in the world. you've helped me grow into a better man in so many different ways, and I can't even begin to express how much that means to me.<br>
@@ -193,15 +191,16 @@
      return;
    }
 
-   let maxX = window.innerWidth - noButton.clientWidth - 10;
-   let maxY = window.innerHeight - noButton.clientHeight - 10;
+   let maxX = window.innerWidth - noButton.clientWidth - 20;
+   let minX = 20; // To prevent it from going off the left edge
 
-   let minY = document.querySelector("h1").getBoundingClientRect().bottom + 10;
-   let maxYLimit = document.querySelector(".gifs").getBoundingClientRect().top - noButton.clientHeight - 10;
+   let titleBottom = document.querySelector("h1").getBoundingClientRect().bottom + 20;
+   let gifsTop = document.querySelector(".gifs").getBoundingClientRect().top - noButton.clientHeight - 20;
 
-   let x = Math.random() * maxX;
-   let y = Math.random() * (maxYLimit - minY) + minY;
+   let x = Math.random() * (maxX - minX) + minX;
+   let y = Math.random() * (gifsTop - titleBottom) + titleBottom;
 
+   noButton.style.position = "absolute";
    noButton.style.left = `${x}px`;
    noButton.style.top = `${y}px`;
  });
