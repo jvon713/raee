@@ -23,7 +23,8 @@
  margin-top: 30px;
  display: flex;
  justify-content: center;
- gap: 20px;
+ align-items: center;
+ gap: 40px; /* Adjusted spacing */
  position: relative;
  }
 
@@ -34,14 +35,12 @@
  border-radius: 10px;
  cursor: pointer;
  transition: 0.3s ease-in-out;
- position: absolute;
  white-space: nowrap;
  }
 
  #yes {
  background-color: #ff69b4;
  color: white;
- left: 40%;
  }
 
  #yes:hover {
@@ -57,10 +56,7 @@
  align-items: center;
  justify-content: center;
  font-size: 1.5em;
- position: absolute;
- top: 50%; /* Keep it centered */
- left: 50%;
- transform: translate(-50%, -50%);
+ position: relative;
  }
 
  .hidden {
@@ -79,13 +75,13 @@
  100% { transform: translateY(-100vh); opacity: 0; }
  }
 
- /* Lowered all text below buttons even more */
+ /* Lowered all text below buttons */
  .reaction, #love-letter, #yes-counter {
- margin-top: 100px; /* Lowered further */
+ margin-top: 60px; /* Perfect spacing */
  }
 
  .gifs {
- margin-top: 80px;
+ margin-top: 50px; /* Adjusted spacing */
  display: flex;
  justify-content: center;
  gap: 10px;
@@ -170,6 +166,7 @@
  let x = Math.max(50, Math.random() * maxX); // Prevents from disappearing
  let y = Math.max(50, Math.random() * maxY); // Prevents from disappearing
 
+ noButton.style.position = "absolute"; // Ensures movement works correctly
  noButton.style.left = `${x}px`;
  noButton.style.top = `${y}px`;
  noButton.style.transition = "left 0.2s ease, top 0.2s ease"; // Smooth movement
