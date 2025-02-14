@@ -11,26 +11,31 @@
  background-color: #ffdde1;
  margin: 0;
  overflow: hidden;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ height: 100vh;
  }
 
  h1 {
- margin-top: 50px;
- font-size: 2.5em;
+ margin-top: 20px;
+ font-size: 2em;
  color: #d63384;
  }
 
  .buttons {
- margin-top: 20px; /* Reduced spacing */
+ margin-top: 10px;
  display: flex;
  justify-content: center;
  align-items: center;
- gap: 30px; /* Adjusted spacing */
+ gap: 20px;
  position: relative;
  }
 
  button {
- font-size: 1.5em;
- padding: 10px 20px;
+ font-size: 1.2em;
+ padding: 8px 16px;
  border: none;
  border-radius: 10px;
  cursor: pointer;
@@ -50,12 +55,12 @@
  #no {
  background-color: #ccc;
  color: black;
- width: 120px; /* Fixed size */
- height: 50px; /* Fixed size */
+ width: 110px;
+ height: 45px;
  display: flex;
  align-items: center;
  justify-content: center;
- font-size: 1.5em;
+ font-size: 1.2em;
  position: relative;
  }
 
@@ -75,40 +80,37 @@
  100% { transform: translateY(-100vh); opacity: 0; }
  }
 
- /* Adjusted text width to keep GIFs in frame */
+ /* Adjusted text size, width & centered everything */
  #love-letter {
- margin-top: 20px; /* Reduced spacing */
- font-size: 1.2em;
+ margin-top: 15px;
+ font-size: 0.9em;
  color: #d63384;
- max-width: 750px; /* Increased width */
- margin-left: auto;
- margin-right: auto;
- line-height: 1.5;
- text-align: justify; /* Makes text stretch evenly */
+ max-width: 500px;
+ line-height: 1.4;
+ text-align: center;
  }
 
- /* Fixed spacing below buttons */
  .reaction {
- margin-top: 40px; /* Tightened spacing */
- font-size: 2em;
+ margin-top: 20px;
+ font-size: 1.6em;
  }
 
  #yes-counter {
- margin-top: 20px; /* Adjusted spacing */
- font-size: 1em;
+ margin-top: 10px;
+ font-size: 0.9em;
  }
 
  .gifs {
- margin-top: 30px; /* Adjusted spacing */
+ margin-top: 20px;
  display: flex;
  justify-content: center;
  gap: 10px;
  }
 
  img {
- width: 300px;
+ width: 250px;
  height: auto;
- margin: 10px;
+ margin: 5px;
  }
 
  /* Hide the audio bar */
@@ -125,7 +127,7 @@
  <button id="no">no😠</button>
  </div>
 
- <div class="reaction hidden" id="reaction">🐹 &nbsp;  YEAHHHHHHHH 😛</div>
+ <div class="reaction hidden" id="reaction">🐹 &nbsp;YEAHHHHHHHH 😛</div>
  <div class="hidden" id="love-letter">
     my beautiful rachael,<br>
     you make me the happiest boy in the world. you've helped me grow into a better man in so many different ways, and I can't even begin to express how much that means to me.<br>
@@ -159,7 +161,7 @@
  let audio = document.getElementById("careless-whisper");
 
  let count = 0;
- let firstHover = true; // Track first hover
+ let firstHover = true;
 
  yesButton.addEventListener("click", function() {
  count++;
@@ -187,19 +189,19 @@
 
  noButton.addEventListener("mouseenter", function() {
  if (firstHover) {
-   firstHover = false; // Prevents instant teleportation
+   firstHover = false;
    return;
  }
 
- let maxX = window.innerWidth - 200; // Limit max movement
- let maxY = window.innerHeight - 150; // Limit max movement
- let x = Math.max(50, Math.random() * maxX); // Prevents from disappearing
- let y = Math.max(50, Math.random() * maxY); // Prevents from disappearing
+ let maxX = window.innerWidth - 200;
+ let maxY = window.innerHeight - 150;
+ let x = Math.max(50, Math.random() * maxX);
+ let y = Math.max(50, Math.random() * maxY);
 
- noButton.style.position = "absolute"; // Ensures movement works correctly
+ noButton.style.position = "absolute";
  noButton.style.left = `${x}px`;
  noButton.style.top = `${y}px`;
- noButton.style.transition = "left 0.2s ease, top 0.2s ease"; // Smooth movement
+ noButton.style.transition = "left 0.2s ease, top 0.2s ease";
  });
 
  window.addEventListener("load", function() {
@@ -208,4 +210,3 @@
  </script>
 </body>
 </html>
-
