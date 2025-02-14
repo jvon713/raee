@@ -51,14 +51,16 @@
  #no {
  background-color: #ccc;
  color: black;
- right: 40%;
  width: 120px; /* Fixed size */
  height: 50px; /* Fixed size */
- position: absolute;
  display: flex;
  align-items: center;
  justify-content: center;
  font-size: 1.5em;
+ position: absolute;
+ top: 50%; /* Keep it centered */
+ left: 50%;
+ transform: translate(-50%, -50%);
  }
 
  .hidden {
@@ -79,11 +81,11 @@
 
  /* Lowered all text below buttons even more */
  .reaction, #love-letter, #yes-counter {
- margin-top: 80px;
+ margin-top: 100px; /* Lowered further */
  }
 
  .gifs {
- margin-top: 60px;
+ margin-top: 80px;
  display: flex;
  justify-content: center;
  gap: 10px;
@@ -163,10 +165,10 @@
  });
 
  noButton.addEventListener("mouseover", function() {
- let maxX = window.innerWidth - noButton.clientWidth - 50; // Keeps inside screen
- let maxY = window.innerHeight - noButton.clientHeight - 50; // Keeps inside screen
- let x = Math.max(10, Math.random() * maxX); // Minimum margin so it stays visible
- let y = Math.max(10, Math.random() * maxY); // Minimum margin so it stays visible
+ let maxX = window.innerWidth - 200; // Limit max movement
+ let maxY = window.innerHeight - 150; // Limit max movement
+ let x = Math.max(50, Math.random() * maxX); // Prevents from disappearing
+ let y = Math.max(50, Math.random() * maxY); // Prevents from disappearing
 
  noButton.style.left = `${x}px`;
  noButton.style.top = `${y}px`;
