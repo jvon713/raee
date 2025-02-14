@@ -16,6 +16,7 @@
  align-items: center;
  justify-content: center;
  height: 100vh;
+ position: relative;
  }
 
  h1 {
@@ -61,7 +62,7 @@
  align-items: center;
  justify-content: center;
  font-size: 1.2em;
- position: relative;
+ position: absolute;
  }
 
  .hidden {
@@ -117,14 +118,26 @@
  #careless-whisper {
  display: none;
  }
+
+ /* Ensure the "No" button stays inside a boundary */
+ .button-container {
+ position: relative;
+ width: 90vw;
+ height: 50vh;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ overflow: hidden;
+ border: 2px solid transparent; /* Invisible boundary */
+ }
  </style>
 </head>
 <body>
  <h1>rae, will you be my valentine forever? 🐿️</h1>
 
- <div class="buttons">
- <button id="yes">yeth🐇</button>
- <button id="no">no😠</button>
+ <div class="button-container">
+   <button id="yes">yeth🐇</button>
+   <button id="no">no😠</button>
  </div>
 
  <div class="reaction hidden" id="reaction">🐹 &nbsp;YEAHHHHHHHH 😛</div>
@@ -193,10 +206,11 @@
    return;
  }
 
- let maxX = window.innerWidth - 200;
- let maxY = window.innerHeight - 150;
- let x = Math.max(50, Math.random() * maxX);
- let y = Math.max(50, Math.random() * maxY);
+ let container = document.querySelector(".button-container");
+ let maxX = container.clientWidth - noButton.clientWidth - 20; // Keep inside boundary
+ let maxY = container.clientHeight - noButton.clientHeight - 20; // Keep inside boundary
+ let x = Math.max(10, Math.random() * maxX);
+ let y = Math.max(10, Math.random() * maxY);
 
  noButton.style.position = "absolute";
  noButton.style.left = `${x}px`;
